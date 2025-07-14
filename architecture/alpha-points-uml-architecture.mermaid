@@ -6,111 +6,111 @@ graph TB
         
         subgraph "<<layer>> Presentation Layer"
             subgraph "<<subsystem>> Client Applications"
-                FrontendApp[<<component>><br/>Frontend<br/>:5173]
-                PartnersApp[<<component>><br/>Partners<br/>:5174]
-                RewardsApp[<<component>><br/>Rewards<br/>:dev]
-                SDK[<<component>><br/>SDK<br/>:CDN]
+                FrontendApp["<<component>>#Frontend#:5173"]
+                PartnersApp["<<component>>#Partners#:5174"]
+                RewardsApp["<<component>>#Rewards#:dev"]
+                SDK["<<component>>#SDK#:CDN"]
             end
             
             subgraph "<<subsystem>> External Systems"
-                Discord[<<external>><br/>Discord API]
-                BlockVision[<<external>><br/>BlockVision API]
-                Oracles[<<external>><br/>Price Oracles]
-                Walrus[<<external>><br/>Walrus Storage]
+                Discord["<<external>>#Discord API"]
+                BlockVision["<<external>>#BlockVision API"]
+                Oracles["<<external>>#Price Oracles"]
+                Walrus["<<external>>#Walrus Storage"]
             end
         end
         
         subgraph "<<layer>> Application Layer"
             subgraph "<<subsystem>> Web Framework"
-                React[<<framework>><br/>React 18.2.0]
-                TypeScript[<<language>><br/>TypeScript 5.2.2]
-                Vite[<<build>><br/>Vite 5.4.19]
+                React["<<framework>>#React 18.2.0"]
+                TypeScript["<<language>>#TypeScript 5.2.2"]
+                Vite["<<build>>#Vite 5.4.19"]
             end
             
             subgraph "<<subsystem>> State Management"
-                ReactQuery[<<library>><br/>React Query]
-                Context[<<pattern>><br/>Context API]
-                Zustand[<<library>><br/>Zustand]
+                ReactQuery["<<library>>#React Query"]
+                Context["<<pattern>>#Context API"]
+                Zustand["<<library>>#Zustand"]
             end
             
             subgraph "<<subsystem>> UI Components"
-                Tailwind[<<framework>><br/>Tailwind CSS]
-                Headless[<<library>><br/>Headless UI]
-                Components[<<module>><br/>UI Components]
+                Tailwind["<<framework>>#Tailwind CSS"]
+                Headless["<<library>>#Headless UI"]
+                Components["<<module>>#UI Components"]
             end
         end
         
         subgraph "<<layer>> Integration Layer"
             subgraph "<<subsystem>> Blockchain Integration"
-                SuiSDK[<<library>><br/>@mysten/sui<br/>v1.30.1]
-                DappKit[<<library>><br/>@mysten/dapp-kit<br/>v0.16.5]
-                WalletAdapter[<<adapter>><br/>Wallet Adapter]
+                SuiSDK["<<library>>#@mysten/sui#v1.30.1"]
+                DappKit["<<library>>#@mysten/dapp-kit#v0.16.5"]
+                WalletAdapter["<<adapter>>#Wallet Adapter"]
             end
             
             subgraph "<<subsystem>> Transaction Processing"
-                TxBuilder[<<service>><br/>Transaction Builder]
-                BCSSerializer[<<service>><br/>BCS Serializer]
-                GasManager[<<service>><br/>Gas Manager]
-                ErrorHandler[<<service>><br/>Error Handler]
+                TxBuilder["<<service>>#Transaction Builder"]
+                BCSSerializer["<<service>>#BCS Serializer"]
+                GasManager["<<service>>#Gas Manager"]
+                ErrorHandler["<<service>>#Error Handler"]
             end
             
             subgraph "<<subsystem>> Event Processing"
-                EventDetector[<<service>><br/>Event Detector]
-                RateLimit[<<service>><br/>Rate Limiter]
-                QuotaValidator[<<service>><br/>Quota Validator]
+                EventDetector["<<service>>#Event Detector"]
+                RateLimit["<<service>>#Rate Limiter"]
+                QuotaValidator["<<service>>#Quota Validator"]
             end
         end
         
         subgraph "<<layer>> Protocol Layer"
             subgraph "<<subsystem>> Core Contracts"
-                Ledger[<<contract>><br/>ledger.move]
-                Admin[<<contract>><br/>admin.move]
-                Oracle[<<contract>><br/>oracle.move]
-                Escrow[<<contract>><br/>escrow.move]
-                StakePosition[<<contract>><br/>stake_position.move]
+                Ledger["<<contract>>#ledger.move"]
+                Admin["<<contract>>#admin.move"]
+                Oracle["<<contract>>#oracle.move"]
+                Escrow["<<contract>>#escrow.move"]
+                StakePosition["<<contract>>#stake_position.move"]
             end
             
             subgraph "<<subsystem>> Business Logic"
-                PartnerFlex[<<contract>><br/>partner_flex.move]
-                PerkManager[<<contract>><br/>perk_manager.move]
-                GenerationManager[<<contract>><br/>generation_manager.move]
-                StakingManager[<<contract>><br/>staking_manager.move]
-                LoanManager[<<contract>><br/>loan.move]
+                PartnerFlex["<<contract>>#partner_flex.move"]
+                PerkManager["<<contract>>#perk_manager.move"]
+                GenerationManager["<<contract>>#generation_manager.move"]
+                StakingManager["<<contract>>#staking_manager.move"]
+                LoanManager["<<contract>>#loan.move"]
             end
             
             subgraph "<<subsystem>> Integration Points"
-                Integration[<<contract>><br/>integration.move]
-                WithdrawManager[<<contract>><br/>pending_withdrawals.move]
-                SuiNSProxy[<<contract>><br/>sui_ns_proxy.move]
+                Integration["<<contract>>#integration.move"]
+                WithdrawManager["<<contract>>#pending_withdrawals.move"]
+                SuiNSProxy["<<contract>>#sui_ns_proxy.move"]
             end
         end
         
         subgraph "<<layer>> Blockchain Layer"
             subgraph "<<subsystem>> Sui Platform"
-                SuiSystem[<<system>><br/>Sui System State]
-                MoveVM[<<runtime>><br/>Move VM]
-                ValidatorNetwork[<<network>><br/>Validator Network]
-                Consensus[<<service>><br/>Consensus Engine]
+                SuiSystem["<<system>>#Sui System State"]
+                MoveVM["<<runtime>>#Move VM"]
+                ValidatorNetwork["<<network>>#Validator Network"]
+                Consensus["<<service>>#Consensus Engine"]
             end
             
             subgraph "<<subsystem>> Storage Layer"
-                ObjectStore[<<storage>><br/>Object Storage]
-                SharedObjects[<<storage>><br/>Shared Objects]
-                OwnedObjects[<<storage>><br/>Owned Objects]
+                ObjectStore["<<storage>>#Object Storage"]
+                SharedObjects["<<storage>>#Shared Objects"]
+                OwnedObjects["<<storage>>#Owned Objects"]
             end
         end
         
         subgraph "<<layer>> Infrastructure Layer"
             subgraph "<<subsystem>> Deployment"
-                Mainnet[<<environment>><br/>Mainnet]
-                Testnet[<<environment>><br/>Testnet]
-                LocalDev[<<environment>><br/>Local Dev]
+                Mainnet["<<environment>>#Mainnet"]
+                Testnet["<<environment>>#Testnet"]
+                LocalDev["<<environment>>#Local Dev"]
             end
             
             subgraph "<<subsystem>> Monitoring"
-                Analytics[<<service>><br/>Analytics]
-                ErrorTracking[<<service>><br/>Error Tracking]
-                Performance[<<service>><br/>Performance]
+                Analytics["<<service>>#Analytics"]
+                ErrorTracking["<<service>>#Error Tracking"]
+                Performance["<<service>>#Performance"]
             end
         end
     end

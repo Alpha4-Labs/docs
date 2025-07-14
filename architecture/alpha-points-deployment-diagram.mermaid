@@ -6,85 +6,85 @@ graph TB
         
         subgraph "<<node>> Client Device"
             subgraph "<<execution environment>> Web Browser"
-                FrontendArtifact[<<artifact>><br/>frontend.js<br/>React SPA]
-                PartnersArtifact[<<artifact>><br/>partners.js<br/>React SPA]
-                SDKArtifact[<<artifact>><br/>sdk.js<br/>Zero-Dev SDK]
+                FrontendArtifact["<<artifact>>#frontend.js#React SPA"]
+                PartnersArtifact["<<artifact>>#partners.js#React SPA"]
+                SDKArtifact["<<artifact>>#sdk.js#Zero-Dev SDK"]
             end
             
             subgraph "<<execution environment>> Wallet Extension"
-                WalletExt[<<component>><br/>Sui Wallet<br/>Extension]
+                WalletExt["<<component>>#Sui Wallet#Extension"]
             end
         end
         
         subgraph "<<node>> CDN Network"
             subgraph "<<execution environment>> Static Hosting"
-                StaticAssets[<<artifact>><br/>Static Assets<br/>JS/CSS/HTML]
-                SDKDistribution[<<artifact>><br/>SDK Distribution<br/>onboard.alpha4.io]
+                StaticAssets["<<artifact>>#Static Assets#JS/CSS/HTML"]
+                SDKDistribution["<<artifact>>#SDK Distribution#onboard.alpha4.io"]
             end
         end
         
         subgraph "<<node>> Blockchain Network"
             subgraph "<<execution environment>> Sui Mainnet"
                 subgraph "<<device>> Validator Node 1"
-                    MoveContracts1[<<artifact>><br/>Move Contracts<br/>Package ID]
-                    StateStore1[<<database>><br/>Object Storage<br/>Shared State]
+                    MoveContracts1["<<artifact>>#Move Contracts#Package ID"]
+                    StateStore1["<<database>>#Object Storage#Shared State"]
                 end
                 
                 subgraph "<<device>> Validator Node 2"
-                    MoveContracts2[<<artifact>><br/>Move Contracts<br/>Package ID]
-                    StateStore2[<<database>><br/>Object Storage<br/>Shared State]
+                    MoveContracts2["<<artifact>>#Move Contracts#Package ID"]
+                    StateStore2["<<database>>#Object Storage#Shared State"]
                 end
                 
                 subgraph "<<device>> Validator Node N"
-                    MoveContractsN[<<artifact>><br/>Move Contracts<br/>Package ID]
-                    StateStoreN[<<database>><br/>Object Storage<br/>Shared State]
+                    MoveContractsN["<<artifact>>#Move Contracts#Package ID"]
+                    StateStoreN["<<database>>#Object Storage#Shared State"]
                 end
             end
             
             subgraph "<<execution environment>> Sui Testnet"
                 subgraph "<<device>> Test Validator"
-                    TestContracts[<<artifact>><br/>Test Contracts<br/>Test Package ID]
-                    TestStateStore[<<database>><br/>Test Storage<br/>Test State]
+                    TestContracts["<<artifact>>#Test Contracts#Test Package ID"]
+                    TestStateStore["<<database>>#Test Storage#Test State"]
                 end
             end
         end
         
         subgraph "<<node>> External Services"
             subgraph "<<execution environment>> Discord Platform"
-                DiscordAPI[<<service>><br/>Discord API<br/>REST/WebSocket]
+                DiscordAPI["<<service>>#Discord API#REST/WebSocket"]
             end
             
             subgraph "<<execution environment>> BlockVision"
-                BlockVisionAPI[<<service>><br/>BlockVision API<br/>Event Indexing]
+                BlockVisionAPI["<<service>>#BlockVision API#Event Indexing"]
             end
             
             subgraph "<<execution environment>> Price Oracles"
-                PriceFeeds[<<service>><br/>Price Feeds<br/>SUI/USD Rate]
+                PriceFeeds["<<service>>#Price Feeds#SUI/USD Rate"]
             end
             
             subgraph "<<execution environment>> Walrus Network"
-                WalrusStorage[<<service>><br/>Walrus Storage<br/>Blob Storage]
+                WalrusStorage["<<service>>#Walrus Storage#Blob Storage"]
             end
         end
         
         subgraph "<<node>> RPC Infrastructure"
             subgraph "<<execution environment>> Public RPC"
-                PublicRPC[<<service>><br/>Public RPC<br/>Sui Network Access]
+                PublicRPC["<<service>>#Public RPC#Sui Network Access"]
             end
             
             subgraph "<<execution environment>> Private RPC"
-                PrivateRPC[<<service>><br/>Private RPC<br/>Enhanced Performance]
+                PrivateRPC["<<service>>#Private RPC#Enhanced Performance"]
             end
         end
         
         subgraph "<<node>> Development Environment"
             subgraph "<<execution environment>> Local Development"
-                LocalNode[<<service>><br/>Local Sui Node<br/>Development]
-                DevContracts[<<artifact>><br/>Dev Contracts<br/>Local Package]
+                LocalNode["<<service>>#Local Sui Node#Development"]
+                DevContracts["<<artifact>>#Dev Contracts#Local Package"]
             end
             
             subgraph "<<execution environment>> Development Server"
-                ViteServer[<<service>><br/>Vite Dev Server<br/>:5173, :5174]
+                ViteServer["<<service>>#Vite Dev Server#:5173, :5174"]
             end
         end
     end
