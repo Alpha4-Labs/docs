@@ -4,11 +4,125 @@ This directory contains the comprehensive architecture diagrams for the Alpha Po
 
 ## Architecture Files
 
-- `alpha-points-architecture.mermaid` - Complete system architecture diagram (3-tier overview)
-- `alpha-points-system-architecture.mermaid` - **NEW** Comprehensive low-level system architecture
-- `tech-stack.md` - Comprehensive technology stack breakdown
+### 📊 **UML-Compliant Diagrams** (Engineering Standards)
+- `alpha-points-uml-architecture.mermaid` - **UML 2.5 Component Diagram** following software engineering standards
+- `alpha-points-deployment-diagram.mermaid` - **UML 2.5 Deployment Diagram** showing runtime distribution
+
+### 📈 **Overview Diagrams** (Business/Technical)
+- `alpha-points-architecture.mermaid` - High-level 3-tier architecture overview
+- `alpha-points-system-architecture.mermaid` - Comprehensive low-level system architecture
+
+### 📋 **Technical Documentation**
+- `README.md` - Architecture overview and usage guide
+- `tech-stack.md` - Complete technology stack breakdown with exact versions
+
+## UML Architecture Overview
+
+### 🏗️ **Component Diagram** (`alpha-points-uml-architecture.mermaid`)
+
+Following **UML 2.5 standards** and software engineering best practices:
+
+#### **System Structure**
+- **<<system>>** Alpha Points Protocol
+- **<<layer>>** Clear layer separation with proper interfaces
+- **<<subsystem>>** Logical grouping of related components
+- **<<component>>** Individual deployable units
+
+#### **Component Types**
+- **<<component>>** - Deployable software components
+- **<<contract>>** - Smart contract modules
+- **<<service>>** - Processing services
+- **<<framework>>** - Development frameworks
+- **<<library>>** - External libraries
+- **<<external>>** - External system dependencies
+
+#### **Layer Architecture**
+1. **Presentation Layer**: Client applications and external systems
+2. **Application Layer**: Web frameworks, state management, UI components
+3. **Integration Layer**: Blockchain integration, transaction processing, event handling
+4. **Protocol Layer**: Smart contracts, core business logic, integration points
+5. **Blockchain Layer**: Sui platform, runtime, storage
+6. **Infrastructure Layer**: Deployment environments, monitoring
+
+### 🚀 **Deployment Diagram** (`alpha-points-deployment-diagram.mermaid`)
+
+Following **UML 2.5 deployment standards**:
+
+#### **Deployment Structure**
+- **<<deployment>>** Production environment
+- **<<node>>** Hardware/runtime nodes
+- **<<execution environment>>** Runtime environments
+- **<<device>>** Physical/virtual devices
+- **<<artifact>>** Deployable artifacts
+
+#### **Node Types**
+- **Client Device**: Web browsers, wallet extensions
+- **CDN Network**: Static hosting, SDK distribution
+- **Blockchain Network**: Sui mainnet/testnet validators
+- **External Services**: Discord, BlockVision, price oracles
+- **RPC Infrastructure**: Public and private RPC endpoints
+- **Development Environment**: Local development, testing
+
+#### **Artifact Distribution**
+- **Static Assets**: Frontend applications distributed via CDN
+- **Smart Contracts**: Move contracts deployed across validator nodes
+- **SDK**: Zero-dev SDK distributed via CDN
+- **State Storage**: Distributed across blockchain nodes with consensus
+
+### 📊 **Engineering Standards Compliance**
+
+#### **UML 2.5 Features**
+- **Stereotypes**: Proper use of `<<stereotype>>` notation
+- **Interface Definitions**: Clear component interfaces
+- **Dependency Relationships**: Explicit dependencies with labeled connections
+- **Artifact Management**: Proper artifact and deployment relationships
+- **Color Coding**: Consistent visual classification
+
+#### **Software Engineering Best Practices**
+- **Separation of Concerns**: Clear layer boundaries
+- **Modularity**: Well-defined component boundaries
+- **Scalability**: Distributed architecture design
+- **Deployment Independence**: Environment-specific configurations
+- **Interface Contracts**: Clear API boundaries
+
+### 🔧 **Technical Specifications**
+
+#### **Component Classification**
+```
+<<component>>    - Frontend Apps, Partners App, SDK
+<<contract>>     - Smart contracts (.move files)
+<<service>>      - Processing services, APIs
+<<framework>>    - React, Vite, Tailwind
+<<library>>      - @mysten/sui, @mysten/dapp-kit
+<<external>>     - Discord, BlockVision, Price Oracles
+<<artifact>>     - Deployable code artifacts
+<<database>>     - State storage systems
+```
+
+#### **Relationship Types**
+```
+-->     Direct dependency
+-.->    Deployment relationship
+<-->    Bidirectional communication
+|API|   Interface specification
+```
 
 ## System Architecture Overview
+
+### 🏗️ **High-Level Architecture** (`alpha-points-architecture.mermaid`)
+
+The original 3-tier architecture overview:
+
+**Client Applications:**
+- **Frontend App** (Port 5173): User-facing React/TypeScript application for staking, perk redemption, and point management
+- **Partners App** (Port 5174): Dedicated partner dashboard for TVL-backed onboarding and revenue analytics
+
+**Blockchain Infrastructure:**
+- **Sui Blockchain**: Decentralized Move smart contracts handling all protocol logic and state management
+
+**External Services:**
+- **Price Oracles**: Real-time SUI/USD price feeds for TVL calculations
+- **RPC Endpoints**: Blockchain connectivity and transaction processing
 
 ### 📊 **Comprehensive System Architecture** (`alpha-points-system-architecture.mermaid`)
 
@@ -52,21 +166,6 @@ This is the most detailed technical architecture diagram showing the complete Al
 #### **Production & Testing Environments**
 - **Deployment**: Mainnet/Testnet with monitoring and analytics
 - **Testing**: Development environment with comprehensive testing suites
-
-### 🏗️ **High-Level Architecture** (`alpha-points-architecture.mermaid`)
-
-The original 3-tier architecture overview:
-
-**Client Applications:**
-- **Frontend App** (Port 5173): User-facing React/TypeScript application for staking, perk redemption, and point management
-- **Partners App** (Port 5174): Dedicated partner dashboard for TVL-backed onboarding and revenue analytics
-
-**Blockchain Infrastructure:**
-- **Sui Blockchain**: Decentralized Move smart contracts handling all protocol logic and state management
-
-**External Services:**
-- **Price Oracles**: Real-time SUI/USD price feeds for TVL calculations
-- **RPC Endpoints**: Blockchain connectivity and transaction processing
 
 ### 🏭 Mid-Level Architecture
 
@@ -133,9 +232,20 @@ This architecture reflects the current implementation as of the documentation da
 
 ### Viewing the Diagrams
 
-1. **For High-Level Overview**: Use `alpha-points-architecture.mermaid` for executive summaries
-2. **For Technical Deep-Dive**: Use `alpha-points-system-architecture.mermaid` for comprehensive technical understanding
-3. **For Implementation Details**: Reference `tech-stack.md` for exact versions and configurations
+1. **For Engineering Review**: Use UML-compliant diagrams for technical specifications
+2. **For Business Overview**: Use high-level architecture for executive summaries
+3. **For Technical Deep-Dive**: Use comprehensive system architecture for detailed understanding
+4. **For Implementation Details**: Reference tech-stack.md for exact versions and configurations
+
+### Diagram Selection Guide
+
+| Use Case | Recommended Diagram |
+|----------|-------------------|
+| **Code Review** | UML Component Diagram |
+| **Deployment Planning** | UML Deployment Diagram |
+| **Executive Summary** | High-Level Architecture |
+| **Technical Deep-Dive** | Comprehensive System Architecture |
+| **Integration Planning** | Component + Deployment Diagrams |
 
 ### Integration with Tools
 
@@ -144,6 +254,7 @@ These `.mermaid` files can be rendered in:
 - **Mermaid Live Editor**: https://mermaid-live-github-com.translate.goog/
 - **VS Code**: Mermaid Preview extension
 - **Documentation Tools**: GitBook, Notion, Confluence with Mermaid support
+- **UML Tools**: Compatible with standard UML visualization tools
 
 ## Technology Stack Overview
 
