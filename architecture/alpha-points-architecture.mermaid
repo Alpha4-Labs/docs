@@ -1,0 +1,98 @@
+graph TB
+    subgraph "🏗️ HIGH-LEVEL ARCHITECTURE"
+        subgraph "Client Applications"
+            FRONTEND["👤 Frontend App<br/>User Interface<br/>React/TypeScript<br/>Port 5173"]
+            PARTNERS["🤝 Partners App<br/>Partner Dashboard<br/>React/TypeScript<br/>Port 5174"]
+        end
+        
+        subgraph "Blockchain Infrastructure"
+            BLOCKCHAIN["⛓️ Sui Blockchain<br/>Move Smart Contracts<br/>Decentralized Logic"]
+        end
+        
+        subgraph "External Services"
+            SERVICES["🌐 External APIs<br/>• Price Oracles<br/>• RPC Endpoints"]
+        end
+    end
+    
+    subgraph "🏭 MID-LEVEL ARCHITECTURE"
+        subgraph "Frontend System"
+            USER_FLOWS["👤 User Flows<br/>• @mysten/dapp-kit Wallet Connection<br/>• Staking Operations<br/>• Perk Marketplace<br/>• Point Management"]
+        end
+        
+        subgraph "Partner System"
+            PARTNER_FLOWS["🤝 Partner Flows<br/>• TVL-backed Onboarding<br/>• Perk Creation & Management<br/>• Revenue Analytics<br/>• Quota Management"]
+        end
+        
+        subgraph "Smart Contract Layer"
+            CORE_CONTRACTS["🔐 Core Contracts<br/>• Ledger (State)<br/>• Staking Manager<br/>• Oracle (Pricing)<br/>• Admin (Governance)"]
+            
+            BUSINESS_LOGIC["💼 Business Logic<br/>• Generation Manager<br/>• Perk Manager<br/>• Partner Manager<br/>• Loan System"]
+            
+            SUPPORT_CONTRACTS["🛠️ Support Contracts<br/>• Escrow<br/>• Stake Position<br/>• Pending Withdrawals<br/>• Integration"]
+        end
+    end
+    
+    subgraph "⚙️ LOW-LEVEL ARCHITECTURE"
+        subgraph "Frontend Components"
+            FE_PAGES["📄 Pages<br/>• WelcomePage<br/>• DashboardPage<br/>• MarketplacePage<br/>• AnalyticsPage<br/>• LoanPage<br/>• GenerationPage"]
+            
+            FE_COMPONENTS["🧩 Components<br/>• PointsDisplay<br/>• StakeCard<br/>• PerkCard<br/>• LoanPanel<br/>• TransactionHistory<br/>• EngagementTracker"]
+            
+            FE_HOOKS["🪝 Hooks<br/>• useAlphaPoints<br/>• useStakePositions<br/>• usePerkData<br/>• useLoans<br/>• useTransactionSuccess"]
+        end
+        
+        subgraph "Partner Components"
+            PARTNER_PAGES["📄 Partner Pages<br/>• PartnerOnboardingPage<br/>• PartnersPage<br/>• WelcomePage"]
+            
+            PARTNER_COMPONENTS["🧩 Partner Components<br/>• PartnerDashboard<br/>• GenerationBuilder<br/>• PerkCreationForm<br/>• AnalyticsTab<br/>• OverviewTab<br/>• PerksTab"]
+            
+            PARTNER_HOOKS["🪝 Partner Hooks<br/>• usePartnerOnboarding<br/>• usePartnerAnalytics<br/>• usePartnerGenerations<br/>• usePartnerQuotas<br/>• usePartnerSetupStatus"]
+        end
+        
+        subgraph "Smart Contract Details"
+            LEDGER_DETAIL["📊 Ledger Contract<br/>• User balances<br/>• Point accounting<br/>• Stake tracking<br/>• Partner TVL"]
+            
+            STAKING_DETAIL["🏛️ Staking Manager<br/>• Stake creation<br/>• Yield calculation<br/>• Position management<br/>• Withdrawal logic"]
+            
+            ORACLE_DETAIL["🔮 Oracle Contract<br/>• SUI/USD price feeds<br/>• TVL calculations<br/>• Market data<br/>• Price validation"]
+            
+            PARTNER_DETAIL["🤝 Partner Contract<br/>• TVL-backed capabilities<br/>• Revenue sharing<br/>• Quota enforcement<br/>• Collateral management"]
+        end
+        
+        subgraph "Transaction Flow"
+            TX_FLOW["💸 Transaction Types<br/>• Stake SUI<br/>• Claim rewards<br/>• Redeem perks<br/>• Partner operations<br/>• Loan management"]
+            
+            TX_ADAPTER["🔄 Transaction Adapter<br/>• @mysten/sui.js integration<br/>• Gas optimization<br/>• Error handling<br/>• Retry logic"]
+        end
+    end
+    
+    %% High-Level Connections
+    FRONTEND -.-> BLOCKCHAIN
+    PARTNERS -.-> BLOCKCHAIN
+    BLOCKCHAIN -.-> SERVICES
+    
+    %% Mid-Level Connections
+    USER_FLOWS -.-> CORE_CONTRACTS
+    PARTNER_FLOWS -.-> BUSINESS_LOGIC
+    CORE_CONTRACTS -.-> SUPPORT_CONTRACTS
+    
+    %% Low-Level Connections
+    FE_PAGES -.-> FE_COMPONENTS
+    FE_COMPONENTS -.-> FE_HOOKS
+    PARTNER_PAGES -.-> PARTNER_COMPONENTS
+    PARTNER_COMPONENTS -.-> PARTNER_HOOKS
+    
+    LEDGER_DETAIL -.-> STAKING_DETAIL
+    STAKING_DETAIL -.-> ORACLE_DETAIL
+    ORACLE_DETAIL -.-> PARTNER_DETAIL
+    
+    TX_FLOW -.-> TX_ADAPTER
+    FE_HOOKS -.-> TX_ADAPTER
+    PARTNER_HOOKS -.-> TX_ADAPTER
+    
+    %% Cross-Level Connections
+    USER_FLOWS -.-> FE_PAGES
+    PARTNER_FLOWS -.-> PARTNER_PAGES
+    CORE_CONTRACTS -.-> LEDGER_DETAIL
+    BUSINESS_LOGIC -.-> STAKING_DETAIL
+    SUPPORT_CONTRACTS -.-> TX_FLOW 

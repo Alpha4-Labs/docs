@@ -1,0 +1,231 @@
+graph TB
+    subgraph "📊 TECH STACKS"
+        subgraph "Frontend Stack"
+            FE_TECH["React 18.2.0<br/>TypeScript 5.2.2<br/>Vite 5.4.19<br/>Tailwind CSS 3.4.0<br/>@headlessui/react 2.2.2<br/>@heroicons/react 2.2.0<br/>Framer Motion 11.15.0<br/>Swiper 11.2.6"]
+        end
+        
+        subgraph "Backend Stack"
+            BE_TECH["Sui Move 2024.alpha<br/>@mysten/sui 1.30.1<br/>@mysten/dapp-kit 0.16.5<br/>@tanstack/react-query 5.17.9<br/>PostCSS 8.4.32<br/>ESLint Modern Config<br/>Zustand 5.0.5 (rewards)<br/>Immer 10.1.1"]
+        end
+        
+        subgraph "Integration Stack"
+            INT_TECH["Sui SDK Integration<br/>BCS Serialization<br/>Transaction Builder<br/>Wallet Connection<br/>RPC Proxy (Dev)<br/>Event System<br/>Oracle Integration<br/>Cross-Chain Ready"]
+        end
+    end
+    
+    subgraph "🏗️ APPLICATION LAYER"
+        subgraph "Client Applications"
+            FRONTEND_APP["🖥️ Frontend App<br/>Port: 5173<br/>Main User Interface<br/>Staking & Rewards<br/>Perk Marketplace<br/>Point Management<br/>Analytics Dashboard"]
+            
+            PARTNERS_APP["🤝 Partners App<br/>Port: 5174<br/>Partner Dashboard<br/>TVL Management<br/>Perk Creation<br/>Revenue Analytics<br/>Quota Monitoring"]
+            
+            REWARDS_APP["🎁 Rewards App<br/>Dev Port<br/>White-Label Marketplace<br/>Curated Perks<br/>Custom Branding<br/>Generation Center"]
+            
+            SDK_LAYER["📦 SDK Layer<br/>onboard.alpha4.io<br/>Zero-Dev Integration<br/>Auto Event Detection<br/>Rate Limiting<br/>Security Validation"]
+        end
+        
+        subgraph "External Integrations"
+            EXT_SERVICES["🌐 External Services<br/>Discord Integration<br/>BlockVision API<br/>Google OAuth<br/>Enoki SDK<br/>Walrus Storage<br/>Price Oracles"]
+        end
+    end
+    
+    subgraph "👤 USER CONTROL LAYER"
+        subgraph "Wallet Management"
+            WALLET_CONNECT["🔐 Wallet Connection<br/>@mysten/dapp-kit<br/>Auto-Connect<br/>Multi-Wallet Support<br/>Session Management<br/>Error Handling"]
+        end
+        
+        subgraph "User Flows"
+            USER_ACTIONS["👤 User Actions<br/>• Stake SUI Tokens<br/>• Claim Rewards<br/>• Redeem Perks<br/>• Manage Positions<br/>• View Analytics<br/>• Loan Operations"]
+            
+            PARTNER_ACTIONS["🤝 Partner Actions<br/>• TVL Deposit<br/>• Create Perks<br/>• Monitor Quotas<br/>• Revenue Tracking<br/>• Generation Builder<br/>• Integration Setup"]
+        end
+        
+        subgraph "Authentication"
+            AUTH_LAYER["🔑 Authentication<br/>Wallet Signatures<br/>Session Storage<br/>Protected Routes<br/>Context Management<br/>Error Boundaries"]
+        end
+    end
+    
+    subgraph "🔄 TRANSFER LAYER"
+        subgraph "Transaction Processing"
+            TX_BUILDER["🛠️ Transaction Builder<br/>@mysten/sui/transactions<br/>BCS Serialization<br/>Gas Optimization<br/>Batch Operations<br/>Sponsored Transactions"]
+            
+            TX_EXECUTION["⚡ Transaction Execution<br/>SignAndExecute<br/>Transaction Blocks<br/>Gas Management<br/>Error Handling<br/>Retry Logic"]
+            
+            TX_MONITORING["📊 Transaction Monitoring<br/>Status Tracking<br/>Event Emission<br/>Success/Failure Handling<br/>Toast Notifications<br/>History Logging"]
+        end
+        
+        subgraph "Event System"
+            EVENT_DETECTION["🔍 Event Detection<br/>Form Submissions<br/>Button Clicks<br/>Page Navigation<br/>Social Shares<br/>Purchase Events"]
+            
+            EVENT_PROCESSING["⚙️ Event Processing<br/>Rate Limiting<br/>Spam Prevention<br/>Quota Validation<br/>Point Calculation<br/>Blockchain Submission"]
+        end
+    end
+    
+    subgraph "🏛️ PROTOCOL LAYER"
+        subgraph "Smart Contract Layer"
+            CORE_CONTRACTS["🔐 Core Contracts<br/>ledger.move - Balance Management<br/>admin.move - Governance<br/>oracle.move - Price Feeds<br/>escrow.move - Asset Custody<br/>stake_position.move - Positions"]
+            
+            BUSINESS_CONTRACTS["💼 Business Contracts<br/>partner_flex.move - TVL Partners<br/>perk_manager.move - Rewards<br/>generation_manager.move - Tasks<br/>staking_manager.move - Staking<br/>loan.move - Lending"]
+            
+            INTEGRATION_CONTRACTS["🔗 Integration Contracts<br/>integration.move - Entry Points<br/>pending_withdrawals_manager.move<br/>sui_ns_proxy.move - Naming"]
+        end
+        
+        subgraph "Economic Model"
+            REVENUE_MODEL["💰 Revenue Model<br/>70% Producer Share<br/>20% TVL Reinvestment<br/>10% Platform Fee<br/>Growth Loop Design<br/>Sustainable Economics"]
+            
+            QUOTA_SYSTEM["📊 Quota System<br/>TVL-Backed Limits<br/>Daily Throttling (3%)<br/>Lifetime Caps (1000:1)<br/>Collateral Protection<br/>Dynamic Adjustment"]
+        end
+    end
+    
+    subgraph "🧩 COMPONENT LAYER"
+        subgraph "Frontend Components"
+            FE_PAGES["📄 Pages<br/>WelcomePage<br/>DashboardPage<br/>MarketplacePage<br/>AnalyticsPage<br/>LoanPage<br/>GenerationPage"]
+            
+            FE_COMPONENTS["🎨 Components<br/>PointsDisplay<br/>StakeCard<br/>PerkCard<br/>LoanPanel<br/>TransactionHistory<br/>EngagementTracker<br/>ProjectionChart"]
+            
+            FE_HOOKS["🪝 Hooks<br/>useAlphaPoints<br/>useStakePositions<br/>usePerkData<br/>useLoans<br/>useTransactionSuccess<br/>useTVLCalculation<br/>useProjectionChartData"]
+        end
+        
+        subgraph "Partner Components"
+            PARTNER_PAGES["📄 Partner Pages<br/>PartnerOnboardingPage<br/>PartnersPage<br/>WelcomePage<br/>Analytics Dashboard"]
+            
+            PARTNER_COMPONENTS["🎨 Partner Components<br/>PartnerDashboard<br/>GenerationBuilder<br/>PerkCreationForm<br/>AnalyticsTab<br/>OverviewTab<br/>PerksTab<br/>SettingsTab"]
+            
+            PARTNER_HOOKS["🪝 Partner Hooks<br/>usePartnerOnboarding<br/>usePartnerAnalytics<br/>usePartnerGenerations<br/>usePartnerQuotas<br/>usePartnerSettings<br/>usePartnerSetupStatus"]
+        end
+        
+        subgraph "Shared Components"
+            SHARED_COMPONENTS["🔧 Shared Components<br/>Button<br/>Input<br/>ErrorToast<br/>Tooltip<br/>Skeleton<br/>AlphaLogo<br/>LoadingSpinner"]
+            
+            SHARED_UTILS["🛠️ Shared Utilities<br/>sui-utils<br/>format<br/>retry<br/>cn (classnames)<br/>constants<br/>error-codes<br/>transaction-utils"]
+        end
+    end
+    
+    subgraph "⚙️ COMPUTATIONAL LAYER"
+        subgraph "Blockchain Processing"
+            SUI_SYSTEM["🏛️ Sui System<br/>Sui System State<br/>Validator Network<br/>Consensus Engine<br/>Transaction Processing<br/>Gas Calculation<br/>Object Storage"]
+            
+            MOVE_VM["🔧 Move VM<br/>Bytecode Execution<br/>Resource Management<br/>Type Safety<br/>Capability System<br/>Event Emission<br/>Error Handling"]
+        end
+        
+        subgraph "Data Processing"
+            INDEXING["📊 Indexing<br/>Event Indexing<br/>Object Tracking<br/>Balance Calculations<br/>Historical Data<br/>Analytics Processing"]
+            
+            ORACLES["🔮 Oracle System<br/>Price Feed Updates<br/>TVL Calculations<br/>Conversion Rates<br/>Staleness Checks<br/>Validation Logic"]
+        end
+    end
+    
+    subgraph "💾 STATE LAYER"
+        subgraph "On-Chain State"
+            SHARED_OBJECTS["🌐 Shared Objects<br/>Ledger (Global State)<br/>Config (Parameters)<br/>Oracle (Price Data)<br/>Staking Manager<br/>Escrow Vault"]
+            
+            OWNED_OBJECTS["👤 Owned Objects<br/>StakePosition NFTs<br/>PartnerCapFlex NFTs<br/>PerkDefinition Objects<br/>Loan Position Objects<br/>Generation Objects"]
+        end
+        
+        subgraph "Off-Chain State"
+            CLIENT_STATE["💻 Client State<br/>React Context<br/>React Query Cache<br/>Session Storage<br/>Local Storage<br/>Component State"]
+            
+            EXTERNAL_STATE["🌐 External State<br/>RPC Node Data<br/>Event History<br/>Analytics Data<br/>Discord State<br/>Oracle Feeds"]
+        end
+    end
+    
+    subgraph "🚀 PRODUCTION ENVIRONMENT"
+        subgraph "Deployment"
+            MAINNET["🏛️ Mainnet<br/>Package ID<br/>Shared Objects<br/>Live Contracts<br/>Real TVL<br/>Production Users"]
+            
+            TESTNET["🧪 Testnet<br/>Development<br/>Testing<br/>Staging<br/>Demo Environment<br/>Integration Testing"]
+        end
+        
+        subgraph "Monitoring"
+            MONITORING["📊 Monitoring<br/>Transaction Monitoring<br/>Error Tracking<br/>Performance Metrics<br/>Security Alerts<br/>Analytics Dashboard"]
+        end
+    end
+    
+    subgraph "🔬 TESTING ENVIRONMENT"
+        subgraph "Development"
+            DEV_ENV["🛠️ Development<br/>Local Node<br/>Unit Tests<br/>Integration Tests<br/>Mock Data<br/>Debug Tools"]
+            
+            TESTING["🧪 Testing<br/>Move Unit Tests<br/>Frontend Tests<br/>E2E Testing<br/>Security Testing<br/>Performance Testing"]
+        end
+        
+        subgraph "Quality Assurance"
+            QA_PROCESS["✅ QA Process<br/>Code Review<br/>Security Audit<br/>Performance Testing<br/>User Testing<br/>Regression Testing"]
+        end
+    end
+    
+    %% Application Layer Connections
+    FRONTEND_APP -.-> WALLET_CONNECT
+    PARTNERS_APP -.-> WALLET_CONNECT
+    REWARDS_APP -.-> WALLET_CONNECT
+    SDK_LAYER -.-> EVENT_DETECTION
+    EXT_SERVICES -.-> EVENT_PROCESSING
+    
+    %% User Control Layer Connections
+    WALLET_CONNECT -.-> AUTH_LAYER
+    USER_ACTIONS -.-> TX_BUILDER
+    PARTNER_ACTIONS -.-> TX_BUILDER
+    AUTH_LAYER -.-> CORE_CONTRACTS
+    
+    %% Transfer Layer Connections
+    TX_BUILDER -.-> TX_EXECUTION
+    TX_EXECUTION -.-> TX_MONITORING
+    EVENT_DETECTION -.-> EVENT_PROCESSING
+    EVENT_PROCESSING -.-> BUSINESS_CONTRACTS
+    
+    %% Protocol Layer Connections
+    CORE_CONTRACTS -.-> MOVE_VM
+    BUSINESS_CONTRACTS -.-> MOVE_VM
+    INTEGRATION_CONTRACTS -.-> MOVE_VM
+    REVENUE_MODEL -.-> QUOTA_SYSTEM
+    QUOTA_SYSTEM -.-> BUSINESS_CONTRACTS
+    
+    %% Component Layer Connections
+    FE_PAGES -.-> FE_COMPONENTS
+    FE_COMPONENTS -.-> FE_HOOKS
+    PARTNER_PAGES -.-> PARTNER_COMPONENTS
+    PARTNER_COMPONENTS -.-> PARTNER_HOOKS
+    FE_HOOKS -.-> SHARED_UTILS
+    PARTNER_HOOKS -.-> SHARED_UTILS
+    
+    %% Computational Layer Connections
+    SUI_SYSTEM -.-> MOVE_VM
+    MOVE_VM -.-> INDEXING
+    INDEXING -.-> ORACLES
+    ORACLES -.-> CORE_CONTRACTS
+    
+    %% State Layer Connections
+    SHARED_OBJECTS -.-> SUI_SYSTEM
+    OWNED_OBJECTS -.-> SUI_SYSTEM
+    CLIENT_STATE -.-> FE_HOOKS
+    EXTERNAL_STATE -.-> CLIENT_STATE
+    
+    %% Environment Connections
+    MAINNET -.-> SHARED_OBJECTS
+    TESTNET -.-> SHARED_OBJECTS
+    MONITORING -.-> MAINNET
+    DEV_ENV -.-> TESTING
+    TESTING -.-> QA_PROCESS
+    
+    %% Cross-Layer Connections
+    FE_TECH -.-> FRONTEND_APP
+    BE_TECH -.-> CORE_CONTRACTS
+    INT_TECH -.-> TX_BUILDER
+    SDK_LAYER -.-> EVENT_DETECTION
+    TX_MONITORING -.-> CLIENT_STATE
+    SHARED_COMPONENTS -.-> FE_COMPONENTS
+    SHARED_COMPONENTS -.-> PARTNER_COMPONENTS
+    SHARED_UTILS -.-> TX_BUILDER
+    
+    %% Data Flow Connections
+    USER_ACTIONS -.-> EVENT_DETECTION
+    PARTNER_ACTIONS -.-> EVENT_PROCESSING
+    TX_EXECUTION -.-> BUSINESS_CONTRACTS
+    BUSINESS_CONTRACTS -.-> SHARED_OBJECTS
+    SHARED_OBJECTS -.-> CLIENT_STATE
+    CLIENT_STATE -.-> FE_COMPONENTS
+    
+    %% Security & Monitoring
+    AUTH_LAYER -.-> MONITORING
+    TX_MONITORING -.-> MONITORING
+    QUOTA_SYSTEM -.-> MONITORING
+    MONITORING -.-> QA_PROCESS 
