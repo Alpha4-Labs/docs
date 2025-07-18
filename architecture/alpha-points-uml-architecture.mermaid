@@ -1,0 +1,180 @@
+graph TB
+    %% UML Component Diagram - Alpha Points Protocol Architecture
+    %% Following UML 2.5 Standards and Software Engineering Best Practices
+    
+    subgraph "<<system>> Alpha Points Protocol"
+        
+        subgraph "<<layer>> Presentation Layer"
+            subgraph "<<subsystem>> Client Applications"
+                FrontendApp["<<component>>#Frontend#:5173"]
+                PartnersApp["<<component>>#Partners#:5174"]
+                RewardsApp["<<component>>#Rewards#:dev"]
+                SDK["<<component>>#SDK#:CDN"]
+            end
+            
+            subgraph "<<subsystem>> External Systems"
+                Discord["<<external>>#Discord API"]
+                BlockVision["<<external>>#BlockVision API"]
+                Oracles["<<external>>#Price Oracles"]
+                Walrus["<<external>>#Walrus Storage"]
+            end
+        end
+        
+        subgraph "<<layer>> Application Layer"
+            subgraph "<<subsystem>> Web Framework"
+                React["<<framework>>#React 18.2.0"]
+                TypeScript["<<language>>#TypeScript 5.2.2"]
+                Vite["<<build>>#Vite 5.4.19"]
+            end
+            
+            subgraph "<<subsystem>> State Management"
+                ReactQuery["<<library>>#React Query"]
+                Context["<<pattern>>#Context API"]
+                Zustand["<<library>>#Zustand"]
+            end
+            
+            subgraph "<<subsystem>> UI Components"
+                Tailwind["<<framework>>#Tailwind CSS"]
+                Headless["<<library>>#Headless UI"]
+                Components["<<module>>#UI Components"]
+            end
+        end
+        
+        subgraph "<<layer>> Integration Layer"
+            subgraph "<<subsystem>> Blockchain Integration"
+                SuiSDK["<<library>>#@mysten/sui#v1.30.1"]
+                DappKit["<<library>>#@mysten/dapp-kit#v0.16.5"]
+                WalletAdapter["<<adapter>>#Wallet Adapter"]
+            end
+            
+            subgraph "<<subsystem>> Transaction Processing"
+                TxBuilder["<<service>>#Transaction Builder"]
+                BCSSerializer["<<service>>#BCS Serializer"]
+                GasManager["<<service>>#Gas Manager"]
+                ErrorHandler["<<service>>#Error Handler"]
+            end
+            
+            subgraph "<<subsystem>> Event Processing"
+                EventDetector["<<service>>#Event Detector"]
+                RateLimit["<<service>>#Rate Limiter"]
+                QuotaValidator["<<service>>#Quota Validator"]
+            end
+        end
+        
+        subgraph "<<layer>> Protocol Layer"
+            subgraph "<<subsystem>> Core Contracts"
+                Ledger["<<contract>>#ledger.move"]
+                Admin["<<contract>>#admin.move"]
+                Oracle["<<contract>>#oracle.move"]
+                Escrow["<<contract>>#escrow.move"]
+                StakePosition["<<contract>>#stake_position.move"]
+            end
+            
+            subgraph "<<subsystem>> Business Logic"
+                PartnerFlex["<<contract>>#partner_flex.move"]
+                PerkManager["<<contract>>#perk_manager.move"]
+                GenerationManager["<<contract>>#generation_manager.move"]
+                StakingManager["<<contract>>#staking_manager.move"]
+                LoanManager["<<contract>>#loan.move"]
+            end
+            
+            subgraph "<<subsystem>> Integration Points"
+                Integration["<<contract>>#integration.move"]
+                WithdrawManager["<<contract>>#pending_withdrawals.move"]
+                SuiNSProxy["<<contract>>#sui_ns_proxy.move"]
+            end
+        end
+        
+        subgraph "<<layer>> Blockchain Layer"
+            subgraph "<<subsystem>> Sui Platform"
+                SuiSystem["<<system>>#Sui System State"]
+                MoveVM["<<runtime>>#Move VM"]
+                ValidatorNetwork["<<network>>#Validator Network"]
+                Consensus["<<service>>#Consensus Engine"]
+            end
+            
+            subgraph "<<subsystem>> Storage Layer"
+                ObjectStore["<<storage>>#Object Storage"]
+                SharedObjects["<<storage>>#Shared Objects"]
+                OwnedObjects["<<storage>>#Owned Objects"]
+            end
+        end
+        
+        subgraph "<<layer>> Infrastructure Layer"
+            subgraph "<<subsystem>> Deployment"
+                Mainnet["<<environment>>#Mainnet"]
+                Testnet["<<environment>>#Testnet"]
+                LocalDev["<<environment>>#Local Dev"]
+            end
+            
+            subgraph "<<subsystem>> Monitoring"
+                Analytics["<<service>>#Analytics"]
+                ErrorTracking["<<service>>#Error Tracking"]
+                Performance["<<service>>#Performance"]
+            end
+        end
+    end
+    
+    %% Interface Connections (UML Standard)
+    FrontendApp -->|HTTP| React
+    PartnersApp -->|HTTP| React
+    RewardsApp -->|HTTP| React
+    SDK -->|JS API| EventDetector
+    
+    React -->|State| ReactQuery
+    React -->|State| Context
+    React -->|UI| Components
+    Components -->|Styling| Tailwind
+    
+    ReactQuery -->|Blockchain| SuiSDK
+    Context -->|Wallet| DappKit
+    EventDetector -->|Tx| TxBuilder
+    TxBuilder -->|Serialize| BCSSerializer
+    
+    SuiSDK -->|RPC| Integration
+    DappKit -->|Sign| WalletAdapter
+    TxBuilder -->|Execute| Integration
+    RateLimit -->|Validate| QuotaValidator
+    
+    Integration -->|Call| Ledger
+    Integration -->|Call| PartnerFlex
+    Integration -->|Call| PerkManager
+    PartnerFlex -->|State| Ledger
+    PerkManager -->|State| Ledger
+    
+    Ledger -->|Runtime| MoveVM
+    PartnerFlex -->|Runtime| MoveVM
+    PerkManager -->|Runtime| MoveVM
+    MoveVM -->|Consensus| Consensus
+    
+    Consensus -->|Store| ObjectStore
+    ObjectStore -->|Access| SharedObjects
+    ObjectStore -->|Access| OwnedObjects
+    
+    Mainnet -->|Deploy| MoveVM
+    Testnet -->|Deploy| MoveVM
+    Analytics -->|Monitor| Mainnet
+    
+    %% External System Connections
+    Discord -->|API| EventDetector
+    BlockVision -->|API| Analytics
+    Oracles -->|Feed| Oracle
+    Walrus -->|Storage| GenerationManager
+    
+    %% Styling for UML Compliance
+    classDef component fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef contract fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef external fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef framework fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
+    classDef service fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    classDef system fill:#f1f8e9,stroke:#558b2f,stroke-width:2px
+    classDef storage fill:#e0f2f1,stroke:#00695c,stroke-width:2px
+    classDef environment fill:#ede7f6,stroke:#512da8,stroke-width:2px
+    
+    class FrontendApp,PartnersApp,RewardsApp,SDK component
+    class Ledger,Admin,Oracle,Escrow,StakePosition,PartnerFlex,PerkManager,GenerationManager,StakingManager,LoanManager,Integration,WithdrawManager,SuiNSProxy contract
+    class Discord,BlockVision,Oracles,Walrus external
+    class React,TypeScript,Vite,Tailwind,Headless framework
+    class TxBuilder,BCSSerializer,GasManager,ErrorHandler,EventDetector,RateLimit,QuotaValidator,Analytics,ErrorTracking,Performance service
+    class SuiSystem,MoveVM,ValidatorNetwork,Consensus system
+    class ObjectStore,SharedObjects,OwnedObjects storage

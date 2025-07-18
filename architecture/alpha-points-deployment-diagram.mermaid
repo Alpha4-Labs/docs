@@ -1,0 +1,146 @@
+graph TB
+    %% UML Deployment Diagram - Alpha Points Protocol
+    %% Following UML 2.5 Standards for Deployment Architecture
+    
+    subgraph "<<deployment>> Production Environment"
+        
+        subgraph "<<node>> Client Device"
+            subgraph "<<execution environment>> Web Browser"
+                FrontendArtifact["<<artifact>>#frontend.js#React SPA"]
+                PartnersArtifact["<<artifact>>#partners.js#React SPA"]
+                SDKArtifact["<<artifact>>#sdk.js#Zero-Dev SDK"]
+            end
+            
+            subgraph "<<execution environment>> Wallet Extension"
+                WalletExt["<<component>>#Sui Wallet#Extension"]
+            end
+        end
+        
+        subgraph "<<node>> CDN Network"
+            subgraph "<<execution environment>> Static Hosting"
+                StaticAssets["<<artifact>>#Static Assets#JS/CSS/HTML"]
+                SDKDistribution["<<artifact>>#SDK Distribution#onboard.alpha4.io"]
+            end
+        end
+        
+        subgraph "<<node>> Blockchain Network"
+            subgraph "<<execution environment>> Sui Mainnet"
+                subgraph "<<device>> Validator Node 1"
+                    MoveContracts1["<<artifact>>#Move Contracts#Package ID"]
+                    StateStore1["<<database>>#Object Storage#Shared State"]
+                end
+                
+                subgraph "<<device>> Validator Node 2"
+                    MoveContracts2["<<artifact>>#Move Contracts#Package ID"]
+                    StateStore2["<<database>>#Object Storage#Shared State"]
+                end
+                
+                subgraph "<<device>> Validator Node N"
+                    MoveContractsN["<<artifact>>#Move Contracts#Package ID"]
+                    StateStoreN["<<database>>#Object Storage#Shared State"]
+                end
+            end
+            
+            subgraph "<<execution environment>> Sui Testnet"
+                subgraph "<<device>> Test Validator"
+                    TestContracts["<<artifact>>#Test Contracts#Test Package ID"]
+                    TestStateStore["<<database>>#Test Storage#Test State"]
+                end
+            end
+        end
+        
+        subgraph "<<node>> External Services"
+            subgraph "<<execution environment>> Discord Platform"
+                DiscordAPI["<<service>>#Discord API#REST/WebSocket"]
+            end
+            
+            subgraph "<<execution environment>> BlockVision"
+                BlockVisionAPI["<<service>>#BlockVision API#Event Indexing"]
+            end
+            
+            subgraph "<<execution environment>> Price Oracles"
+                PriceFeeds["<<service>>#Price Feeds#SUI/USD Rate"]
+            end
+            
+            subgraph "<<execution environment>> Walrus Network"
+                WalrusStorage["<<service>>#Walrus Storage#Blob Storage"]
+            end
+        end
+        
+        subgraph "<<node>> RPC Infrastructure"
+            subgraph "<<execution environment>> Public RPC"
+                PublicRPC["<<service>>#Public RPC#Sui Network Access"]
+            end
+            
+            subgraph "<<execution environment>> Private RPC"
+                PrivateRPC["<<service>>#Private RPC#Enhanced Performance"]
+            end
+        end
+        
+        subgraph "<<node>> Development Environment"
+            subgraph "<<execution environment>> Local Development"
+                LocalNode["<<service>>#Local Sui Node#Development"]
+                DevContracts["<<artifact>>#Dev Contracts#Local Package"]
+            end
+            
+            subgraph "<<execution environment>> Development Server"
+                ViteServer["<<service>>#Vite Dev Server#:5173, :5174"]
+            end
+        end
+    end
+    
+    %% Protocol Connections
+    FrontendArtifact -.->|HTTPS| StaticAssets
+    PartnersArtifact -.->|HTTPS| StaticAssets
+    SDKArtifact -.->|HTTPS| SDKDistribution
+    
+    %% Wallet Connections
+    FrontendArtifact -->|dApp Kit| WalletExt
+    PartnersArtifact -->|dApp Kit| WalletExt
+    WalletExt -->|Sign Tx| PublicRPC
+    
+    %% Blockchain Connections
+    PublicRPC -->|RPC| MoveContracts1
+    PublicRPC -->|RPC| MoveContracts2
+    PublicRPC -->|RPC| MoveContractsN
+    PrivateRPC -->|RPC| MoveContracts1
+    
+    %% State Replication
+    StateStore1 <-->|Consensus| StateStore2
+    StateStore2 <-->|Consensus| StateStoreN
+    StateStore1 <-->|Consensus| StateStoreN
+    
+    %% External Service Connections
+    SDKArtifact -->|API| DiscordAPI
+    FrontendArtifact -->|API| BlockVisionAPI
+    MoveContracts1 -->|Price Data| PriceFeeds
+    MoveContracts1 -->|Blob Storage| WalrusStorage
+    
+    %% Development Connections
+    ViteServer -->|Dev Build| FrontendArtifact
+    ViteServer -->|Dev Build| PartnersArtifact
+    DevContracts -->|Deploy| LocalNode
+    
+    %% Test Environment
+    TestContracts -.->|Test Deploy| TestStateStore
+    ViteServer -.->|Test Mode| TestContracts
+    
+    %% Deployment Dependencies
+    MoveContracts1 -.->|Deployed From| DevContracts
+    MoveContracts2 -.->|Deployed From| DevContracts
+    MoveContractsN -.->|Deployed From| DevContracts
+    TestContracts -.->|Deployed From| DevContracts
+    
+    %% Styling for UML Compliance
+    classDef artifact fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef service fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    classDef database fill:#e8f5e8,stroke:#388e3c,stroke-width:2px
+    classDef component fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    classDef device fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    classDef node fill:#f1f8e9,stroke:#558b2f,stroke-width:3px
+    classDef environment fill:#ede7f6,stroke:#512da8,stroke-width:2px
+    
+    class FrontendArtifact,PartnersArtifact,SDKArtifact,StaticAssets,SDKDistribution,MoveContracts1,MoveContracts2,MoveContractsN,TestContracts,DevContracts artifact
+    class DiscordAPI,BlockVisionAPI,PriceFeeds,WalrusStorage,PublicRPC,PrivateRPC,LocalNode,ViteServer service
+    class StateStore1,StateStore2,StateStoreN,TestStateStore database
+    class WalletExt component 

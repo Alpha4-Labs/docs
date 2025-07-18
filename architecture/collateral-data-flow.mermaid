@@ -1,0 +1,24 @@
+flowchart TD
+    subgraph Input
+        A[SUI Coin] -->|Deposit| B[create_partner_cap_with_collateral]
+        C[USDC Coin] -->|Deposit| D[create_partner_cap_with_usdc_collateral]
+        E[NFT Kiosk/IDs] -->|Lock| F[create_partner_cap_with_nft_bundle]
+    end
+    subgraph Processing
+        B -->|Oracle Valuation| G[Calculate Quota/LTV]
+        D -->|1:1 Valuation| G
+        F -->|Floor Price Oracle| G
+        G -->|Health Factor Check| H[PartnerCap Object]
+    end
+    subgraph Output
+        H -->|Events| I[PartnerCapCreatedWith*]
+        H -->|Monitor| J[auto_adjust_quota_for_price_change]
+        H -->|Low Health| K[liquidate_nft_collateral]
+    end
+    classDef input fill:#e3f2fd,stroke:#1976d2
+    classDef process fill:#fff3e0,stroke:#f57c00
+    classDef output fill:#e8f5e9,stroke:#388e3c
+    class A,C,E input
+    class B,D,F,G process
+    class H,I,J,K output
+    linkStyle default stroke:#666,stroke-width:2px 

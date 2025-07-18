@@ -1,0 +1,42 @@
+sequenceDiagram
+    participant User
+    participant Frontend as <<frontend>> Frontend App
+    participant PartnerMove as <<contract>> partner.move
+    participant Oracle as <<service>> RateOracle
+    participant Kiosk as <<storage>> Kiosk (for NFT)
+    note over User, Kiosk: Flow for creating PartnerCap with collateral
+
+    alt SUI Collateral
+        User->>Frontend: Initiate creation (provide SUI coin, name)
+        Frontend->>PartnerMove: Call create_partner_cap_with_collateral(sui_collateral, rate_oracle, name)
+        PartnerMove->>Oracle: Get SUI value in USDC (price_in_usdc)
+        Oracle-->>PartnerMove: Return collateral_value_usdc
+        PartnerMove->>PartnerMove: Calculate daily_quota_pts
+        PartnerMove->>PartnerMove: Create PartnerCap object
+        PartnerMove->>PartnerMove: Burn SUI collateral (transfer to @0x0)
+        PartnerMove-->>Frontend: Transfer PartnerCap to user
+        PartnerMove->>User: Emit PartnerCapCreatedWithCollateral event
+    else USDC Collateral
+        User->>Frontend: Initiate creation (provide USDC coin, name)
+        Frontend->>PartnerMove: Call create_partner_cap_with_usdc_collateral(usdc_collateral, name)
+        PartnerMove->>PartnerMove: Set collateral_value_usdc = usdc_amount (1:1 LTV)
+        PartnerMove->>PartnerMove: Calculate daily_quota_pts
+        PartnerMove->>PartnerMove: Create PartnerCap with USDCCollateralInfo (dynamic field)
+        PartnerMove->>PartnerMove: Store USDC in treasury (transfer to @0x0 placeholder)
+        PartnerMove-->>Frontend: Transfer PartnerCap to user
+        PartnerMove->>User: Emit PartnerCapCreatedWithUSDCCollateral event
+    else NFT Collateral
+        User->>Frontend: Initiate creation (provide kiosk, nft_ids, collection_type, est_value)
+        Frontend->>PartnerMove: Call create_partner_cap_with_nft_bundle(kiosk, nft_ids, collection_type, est_value, rate_oracle, name)
+        PartnerMove->>Kiosk: Verify kiosk ownership and NFTs
+        PartnerMove->>Oracle: Get current floor price (get_current_floor_price)
+        Oracle-->>PartnerMove: Return floor_price_usdc
+        PartnerMove->>PartnerMove: Calculate effective_collateral_value (70% LTV)
+        PartnerMove->>PartnerMove: Calculate daily_quota_pts
+        PartnerMove->>PartnerMove: Create PartnerCap with NFTCollateralInfo (dynamic field)
+        PartnerMove->>Kiosk: Lock NFTs in kiosk
+        PartnerMove-->>Frontend: Transfer PartnerCap to user
+        PartnerMove->>User: Emit PartnerCapCreatedWithNFTBundle event
+    end
+    note over PartnerMove: Common: Set paused=false, mint_remaining_today=daily_quota, last_epoch=current
+    note over PartnerMove: Errors handled: e.g., E_COLLATERAL_VALUE_ZERO, E_EMPTY_NFT_BUNDLE 
