@@ -53,20 +53,6 @@ Alpha Points is a comprehensive blockchain-based rewards protocol built on Sui, 
 - Daily throttling: 3% of TVL value per day maximum
 - Lifetime limits: 1,000 points per USDC of collateral
 
-#### **💰 Revenue Sharing (70/20/10)**
-- **70% Producer Share**: Direct payment to perk creators
-- **20% TVL Reinvestment**: Automatic growth of partner TVL
-- **10% Platform Fee**: Protocol operations and development
-
-#### **🔄 Sustainable Growth Loop**
-Revenue from perk sales automatically reinvests in partner TVL, creating a positive feedback loop that expands quota capacity over time.
-
-#### **⚡ Zero-Dev Integration**
-Drop-in JavaScript SDK for automatic event detection and point minting with comprehensive rate limiting and abuse protection.
-
-#### **🔒 Collateralized Lending**
-Users can borrow Alpha Points against staked SUI positions with 70% LTV ratio and partner attribution for fees.
-
 ### **Architecture Highlights**
 
 #### **Three-Tier Architecture**
@@ -137,20 +123,10 @@ Users can borrow Alpha Points against staked SUI positions with 70% LTV ratio an
 ### **Technical Constants**
 
 - **1 USD = 1,000 Alpha Points**: Base conversion rate
-- **SUI Price**: ~$3.28 = 3,280 Alpha Points
+- **SUI Price**: ~$3.28 = 3,280 Alpha Points (testnet rate)
 - **Partner Quota**: 1,000 points per USDC of collateral
 - **Daily Throttle**: 3% of TVL value per day
-- **Revenue Split**: 70% producer / 20% TVL growth / 10% platform
-
-## Contributing
-
-### **Documentation Updates**
-
-When updating documentation:
-1. Ensure accuracy against actual implementation
-2. Update both architecture and feature docs if system changes
-3. Keep technical constants and versions current
-4. Test all code examples and configurations
+- **Revenue Split**: 90% producer / 10% platform
 
 ### **Code References**
 
