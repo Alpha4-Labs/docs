@@ -112,10 +112,6 @@ Users can borrow Alpha Points against staked SUI positions with 70% LTV ratio an
 - Revenue distribution and TVL growth
 - Oracle integration and price feeds
 
-#### **⚠️ Known Issues**
-- **Math Error**: Staking rewards giving 223x more points than intended (cannot fix due to Sui Move upgrade constraints)
-- **Placeholder Features**: Loan interest (0%), NFT collateral (planned), hedge system (in development)
-
 #### **🔄 Active Development**
 - Enhanced analytics and monitoring
 - Volatility hedge system
