@@ -81,13 +81,14 @@ Users can borrow Alpha Points against staked SUI positions with 70% LTV ratio an
 - **Styling**: Tailwind CSS + Headless UI
 - **State Management**: React Query + Context API
 
-#### **Smart Contract Modules**
-- `ledger.move`: Core point accounting and balance management
-- `partner_flex.move`: TVL-backed partner system and quota management
-- `perk_manager.move`: Perk creation, claiming, and revenue distribution
-- `integration.move`: Main entry points and orchestration
-- `loan.move`: Collateralized lending system
-- `oracle.move`: Price feeds and conversion functions
+#### **Smart Contract Modules (Active V2/V3)**
+- `admin_v2.move`: Protocol governance with multi-sig and timelock controls
+- `ledger_v2.move`: Fixed point accounting with proper APY calculations
+- `partner_v3.move`: USDC-backed partner vaults with DeFi integration
+- `generation_manager_v2.move`: Partner action registration and quota management
+- `perk_manager_v2.move`: Points redemption marketplace with USDC payouts
+- `oracle_v2.move`: Multi-source price feeds (Pyth + CoinGecko)
+- `integration_v2.move`: User-facing entry points and safety checks
 
 ### **Economic Model**
 
@@ -158,9 +159,14 @@ When updating documentation:
 ### **Code References**
 
 All documentation is based on actual smart contract implementation. Key reference files:
-- `sources/ledger.move`: Point mechanics and balance management
-- `sources/partner_flex.move`: TVL-backed partner system
-- `sources/perk_manager.move`: Perk creation and revenue distribution
-- `sources/integration.move`: Main entry points and orchestration
+- `sources/admin_v2.move`: Protocol governance and configuration management
+- `sources/ledger_v2.move`: Fixed point mechanics and balance management
+- `sources/partner_v3.move`: USDC-backed partner system with DeFi integration
+- `sources/generation_manager_v2.move`: Partner integration infrastructure
+- `sources/perk_manager_v2.move`: Points redemption and revenue distribution
+- `sources/oracle_v2.move`: Multi-source price feeds and validation
+- `sources/integration_v2.move`: User-facing entry points and safety checks
+
+**Note**: All `.disabled` modules are legacy V1 implementations kept for reference only.
 
 This documentation provides comprehensive coverage of the Alpha Points protocol for investors, partners, developers, and users alike. 

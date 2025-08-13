@@ -181,10 +181,11 @@ This is the most detailed technical architecture diagram showing the complete Al
 - Revenue analytics and quota monitoring
 - Collateral management
 
-**Smart Contract Layer:**
-- **Core Contracts**: Ledger, Staking Manager, Oracle, Admin
-- **Business Logic**: Generation Manager, Perk Manager, Partner Manager, Loan System
-- **Support Contracts**: Escrow, Stake Position, Pending Withdrawals, Integration
+**Smart Contract Layer (V2/V3 Active):**
+- **Core Contracts**: admin_v2.move, ledger_v2.move, oracle_v2.move
+- **Business Logic**: generation_manager_v2.move, perk_manager_v2.move, partner_v3.move
+- **Integration**: integration_v2.move (user-facing entry points)
+- **Legacy**: All `.disabled` modules are V1 implementations (deprecated)
 
 ### ⚙️ Low-Level Architecture
 
@@ -198,23 +199,28 @@ This is the most detailed technical architecture diagram showing the complete Al
 - Components: PartnerDashboard, GenerationBuilder, PerkCreationForm, AnalyticsTab
 - Hooks: usePartnerOnboarding, usePartnerAnalytics, usePartnerGenerations
 
-**Smart Contract Details:**
-- **Ledger**: User balances, point accounting, stake tracking, partner TVL
-- **Staking Manager**: Stake creation, yield calculation, position management
-- **Oracle**: SUI/USD price feeds, TVL calculations, market data validation
-- **Partner Contract**: TVL-backed capabilities, revenue sharing, quota enforcement
+**Smart Contract Details (V2/V3 Architecture):**
+- **admin_v2.move**: Multi-sig governance, parameter validation, emergency controls
+- **ledger_v2.move**: Fixed APY calculations, point accounting, supply tracking  
+- **partner_v3.move**: USDC-backed vaults, DeFi integration, collateral management
+- **generation_manager_v2.move**: Action registration, quota validation, webhook support
+- **perk_manager_v2.move**: USDC redemption marketplace, revenue distribution
+- **oracle_v2.move**: Multi-source price feeds (Pyth + CoinGecko), failover logic
+- **integration_v2.move**: User-facing entry points, safety checks, simplified flows
 
 **Transaction Flow:**
 - Transaction types: Stake SUI, claim rewards, redeem perks, partner operations
 - Transaction adapter: @mysten/sui.js integration with gas optimization and error handling
 
-## Key Features
+## Key Features (V2/V3 System)
 
-1. **Decentralized Staking**: Users stake SUI tokens to earn Alpha Points
-2. **Perk Marketplace**: Redeem points for various perks and benefits
-3. **Partner System**: TVL-backed partner onboarding with revenue sharing
-4. **Loan System**: Collateralized lending against staked positions
-5. **Analytics**: Comprehensive tracking of user engagement and partner performance
+1. **Fixed APY Staking**: Users stake SUI with corrected APY calculations (no more 223x bug)
+2. **USDC Perk Marketplace**: Redeem points for USDC-priced perks with revenue sharing
+3. **USDC-Backed Partner System**: Stable collateral eliminates volatility risk
+4. **Partner Integration Infrastructure**: Action registration, webhook support, quota management
+5. **Multi-Source Oracle System**: Pyth + CoinGecko with automatic failover
+6. **DeFi Vault Integration**: Partner vaults can be used in yield protocols
+7. **Multi-Sig Governance**: Enhanced security with timelock mechanisms
 
 ## Technology Stack
 
@@ -226,7 +232,15 @@ This is the most detailed technical architecture diagram showing the complete Al
 
 ## Implementation Notes
 
-This architecture reflects the current implementation as of the documentation date, with deprecated components (Enoki zkLogin, SuiNS) removed for accuracy. All components listed are actively used in the production system.
+This architecture reflects the **V2/V3 system implementation** with all legacy V1 modules marked as `.disabled`. Key improvements include:
+
+- **Fixed Economics**: Eliminated 223x APY bug with proper basis points calculations
+- **USDC Stability**: Replaced volatile SUI collateral with stable USDC backing
+- **Enhanced Security**: Multi-sig governance with timelock mechanisms
+- **DeFi Ready**: Vault objects designed for protocol integration
+- **Production Grade**: Comprehensive testing, error handling, and monitoring
+
+**Migration Status**: All active development uses V2/V3 modules. Legacy `.disabled` modules are kept for reference only.
 
 ## Usage
 
